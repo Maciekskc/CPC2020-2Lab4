@@ -1,5 +1,5 @@
 ﻿
-namespace CPC2020_2_Lab3.Forms
+namespace CPC2020_2_Lab4.Forms
 {
     partial class FormMain
     {

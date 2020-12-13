@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using CPC2020_2_Lab3.Repositories;
 
-namespace CPC2020_2_Lab3.Forms
+namespace CPC2020_2_Lab4.Forms
 {
     /// <summary>
     /// Klasa okna głównego aplikacji

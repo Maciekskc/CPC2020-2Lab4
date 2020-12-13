@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace CPC2020_2_Lab3.Properties
+namespace CPC2020_2_Lab4.Properties
 {
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]

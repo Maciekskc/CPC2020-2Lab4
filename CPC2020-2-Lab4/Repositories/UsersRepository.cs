@@ -1,7 +1,7 @@
 ﻿using System;
-using CPC2020_2_Lab3.Repositories.Interfaces;
+using CPC2020_2_Lab4.Repositories.Interfaces;
 
-namespace CPC2020_2_Lab3.Repositories
+namespace CPC2020_2_Lab4.Repositories
 {
     /// <summary>
     /// Klasa definiująca metody związane z komunikacją z bazą danych dla tabeli Users

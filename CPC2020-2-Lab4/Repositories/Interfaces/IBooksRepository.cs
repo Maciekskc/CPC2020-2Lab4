@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-
-namespace CPC2020_2_Lab3.Repositories.Interfaces
+﻿namespace CPC2020_2_Lab4.Repositories.Interfaces
 {
     /// <summary>
     /// Interfejs definiujący metody związane z komunikacją z bazą danych dla tabeli Books
