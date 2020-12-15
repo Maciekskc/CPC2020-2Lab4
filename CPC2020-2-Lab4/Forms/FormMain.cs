@@ -24,9 +24,6 @@ namespace CPC2020_2_Lab4.Forms
         {
             //Aktualizacja danych w DataGridViewBooks przy ładowaniu okna
             RefreshDataGridViewBooks();
-
-            //Dostosowanie tabeli DataGridViewBooks przy ładowaniu okna
-            CustomizeDataGridViewBooks();
         }
 
         /// <summary>
@@ -93,14 +90,21 @@ namespace CPC2020_2_Lab4.Forms
         /// <param name="e"></param>
         private void dataGridViewBooks_SelectionChanged(object sender, EventArgs e)
         {
-            labelLastAction.Text = "Wybrano książkę";
-        }
+            //labelLastAction.Text = "Wybrano książkę";
 
-        /// <summary>
-        /// Metoda dostosowująca DataGridViewBooks - ustawianie widoczności kolumn i ich nazw
-        /// </summary>
-        private void CustomizeDataGridViewBooks()
-        {
+            //Book book = (Book)dataGridViewBooks.CurrentRow.DataBoundItem;
+
+            ////nadpisz dane zaznaczonym rekordem
+            //textBoxId.Text = book.Id.ToString();
+            //textBoxBookTitle.Text = book.Title;
+            //textBoxYearOfPublication.Text = book.YearOfPublish.ToString();
+            //textBoxPrice.Text = book.Price.ToString();
+
+            //textBoxGenre.Text = book.Genre.Name;
+            //textBoxFirstName.Text = book.Author.FirstName;
+            //textBoxLastName.Text = book.Author.LastName;
+
+            //labelLastAction.Text = "Wybrano książkę";
         }
 
         /// <summary>

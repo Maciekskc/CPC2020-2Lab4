@@ -19,6 +19,12 @@ namespace CPC2020_2_Lab4.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Metoda dodająca dodająca opcje 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool Register(string login, string password)
         {
             throw new NotImplementedException();

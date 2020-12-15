@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2711170D-9471-49B4-AF7A-397F27A3761D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CPC2020_2_Lab3</RootNamespace>
-    <AssemblyName>CPC2020-2-Lab3</AssemblyName>
+    <RootNamespace>CPC2020_2_Lab4</RootNamespace>
+    <AssemblyName>CPC2020-2-Lab4</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -61,6 +61,7 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Book.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BooksRepository.cs" />
@@ -97,8 +98,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,7 @@
-﻿namespace CPC2020_2_Lab4.Repositories.Interfaces
+﻿using System.Collections.Generic;
+using CPC2020_2_Lab4.Models.Entities;
+
+namespace CPC2020_2_Lab4.Repositories.Interfaces
 {
     /// <summary>
     /// Interfejs definiujący metody związane z komunikacją z bazą danych dla tabeli Books
@@ -9,7 +12,14 @@
         /// Abstrakcyjna metoda do pobierania wszystkich książek z tabeli Books
         /// </summary>
         /// <returns></returns>
-        //List<Book> GetBooks();
+        List<Book> GetBooks();
+
+        /// <summary>
+        /// Abstrakcyjna metoda do pobierania książki o podanym id
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        Book GetBookById(int id);
 
         /// <summary>
         /// Abstrakcyjna metoda do dodawania nowej książki do tabeli Books
