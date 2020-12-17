@@ -5,4 +5,4 @@ Celem kursu jest zaznajomienie uczestników z podstawiami działania EntityFrame
 
 Program w branchu **main** zawiera szablon aplikacji C# WindowsForms niezbędny do podejścia do zajęć laboratoryjnych.
 
-Branch **Done** zawiera wpełni skończony projekt realizowany na zajęciach.
+Branch **PracaNaLabolatorium** zawiera wpełni skończony projekt realizowany na zajęciach.
