@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CPC2020_2_Lab4.Repositories;
+using System;
 using System.Windows.Forms;
+using CPC2020_2_Lab4.Models.Entities;
+using CPC2020_2_Lab4.ViewModels;
 
 namespace CPC2020_2_Lab4.Forms
 {
@@ -7,8 +10,9 @@ namespace CPC2020_2_Lab4.Forms
     /// Klasa okna głównego aplikacji
     /// </summary>
     public partial class FormMain : Form
-    {
-       // private readonly BooksRepository booksRepository = new BooksRepository();
+    { 
+        private readonly BooksRepository booksRepository = new BooksRepository();
+        
         /// <summary>
         /// Konstruktor okna głownego aplikacji
         /// </summary>
@@ -33,18 +37,26 @@ namespace CPC2020_2_Lab4.Forms
         /// <param name="e"></param>
         private void buttonAddBook_Click(object sender, EventArgs e)
         {
-            //bool isAdded = booksRepository.AddBook(textBoxBookTitle.Text,0,0,"","","");
+            string title = textBoxBookTitle.Text ;
+            int yearOfPublish = int.Parse(textBoxYearOfPublication.Text);
+            float price = float.Parse(textBoxPrice.Text);
 
-            //if (isAdded)
-            //{
-            //    RefreshDataGridViewBooks();
-            //    ClearTextBoxes();
-            //    labelLastAction.Text = "Dodano książkę";
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Ksiązka nie została dodana sprawdź poprawność paretremów");
-            //}
+            string genre = textBoxGenre.Text;
+            string authorFirstName = textBoxFirstName.Text;
+            string authorLastName = textBoxLastName.Text;
+
+            bool isAdded = booksRepository.AddBook(title,yearOfPublish,price,genre,authorFirstName,authorLastName);
+
+            if (isAdded)
+            {
+                RefreshDataGridViewBooks();
+                ClearTextBoxes();
+                labelLastAction.Text = "Dodano książkę";
+            }
+            else
+            {
+                MessageBox.Show("Ksiązka nie została dodana sprawdź poprawność paretremów");
+            }
         }
 
         /// <summary>
@@ -54,9 +66,20 @@ namespace CPC2020_2_Lab4.Forms
         /// <param name="e"></param>
         private void buttonDeleteBook_Click(object sender, EventArgs e)
         {
-            RefreshDataGridViewBooks();
-            ClearTextBoxes();
-            labelLastAction.Text = "Usunięto książkę";
+            int id = int.Parse(textBoxId.Text);
+
+            bool isDeleted = booksRepository.DeleteBook(id);
+
+            if (isDeleted)
+            {
+                RefreshDataGridViewBooks();
+                ClearTextBoxes();
+                labelLastAction.Text = "Usunięto książkę";
+            }
+            else
+            {
+                MessageBox.Show("Ksiązka nie została usunięta sprawdź poprawność paretremów");
+            }
         }
 
 
@@ -67,9 +90,27 @@ namespace CPC2020_2_Lab4.Forms
         /// <param name="e"></param>
         private void buttonEditBook_Click(object sender, EventArgs e)
         {
-            RefreshDataGridViewBooks();
-            ClearTextBoxes();
-            labelLastAction.Text = "Edytowano książkę";
+            int id = int.Parse(textBoxId.Text);
+            string title = textBoxBookTitle.Text;
+            int yearOfPublish = int.Parse(textBoxYearOfPublication.Text);
+            float price = float.Parse(textBoxPrice.Text);
+
+            string genre = textBoxGenre.Text;
+            string authorFirstName = textBoxFirstName.Text;
+            string authorLastName = textBoxLastName.Text;
+
+            bool isEdited = booksRepository.EditBook(id,title, yearOfPublish, price, genre, authorFirstName, authorLastName);
+
+            if (isEdited)
+            {
+                RefreshDataGridViewBooks();
+                ClearTextBoxes();
+                labelLastAction.Text = "Edytowanno książkę";
+            }
+            else
+            {
+                MessageBox.Show("Ksiązka nie została zedytowana sprawdź poprawność paretremów");
+            }
         }
 
         /// <summary>
@@ -90,21 +131,21 @@ namespace CPC2020_2_Lab4.Forms
         /// <param name="e"></param>
         private void dataGridViewBooks_SelectionChanged(object sender, EventArgs e)
         {
-            //labelLastAction.Text = "Wybrano książkę";
+            labelLastAction.Text = "Wybrano książkę";
 
-            //Book book = (Book)dataGridViewBooks.CurrentRow.DataBoundItem;
+            BookViewModel book = (BookViewModel) dataGridViewBooks.CurrentRow.DataBoundItem;
 
-            ////nadpisz dane zaznaczonym rekordem
-            //textBoxId.Text = book.Id.ToString();
-            //textBoxBookTitle.Text = book.Title;
-            //textBoxYearOfPublication.Text = book.YearOfPublish.ToString();
-            //textBoxPrice.Text = book.Price.ToString();
+            //nadpisz dane zaznaczonym rekordem
+            textBoxId.Text = book.Id.ToString();
+            textBoxBookTitle.Text = book.Title;
+            textBoxYearOfPublication.Text = book.YearOfPublish.ToString();
+            textBoxPrice.Text = book.Price.ToString();
 
-            //textBoxGenre.Text = book.Genre.Name;
-            //textBoxFirstName.Text = book.Author.FirstName;
-            //textBoxLastName.Text = book.Author.LastName;
+            textBoxGenre.Text = book.Genre;
+            textBoxFirstName.Text = book.AuthorFirstName;
+            textBoxLastName.Text = book.AuthorLastName;
 
-            //labelLastAction.Text = "Wybrano książkę";
+            labelLastAction.Text = "Wybrano książkę";
         }
 
         /// <summary>
@@ -126,7 +167,8 @@ namespace CPC2020_2_Lab4.Forms
         /// </summary>
         private void RefreshDataGridViewBooks()
         {
-            //dataGridViewBooks.DataSource = booksRepository.GetBooks();
+            dataGridViewBooks.DataSource = booksRepository.GetBooks();
+            //dataGridViewBooks.DataSource = booksRepository.GetBooksSimpleViewModel();
         }
     }
 }

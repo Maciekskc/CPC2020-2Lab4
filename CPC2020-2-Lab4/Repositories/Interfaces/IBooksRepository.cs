@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CPC2020_2_Lab4.Models.Entities;
+using CPC2020_2_Lab4.ViewModels;
 
 namespace CPC2020_2_Lab4.Repositories.Interfaces
 {
@@ -12,7 +13,13 @@ namespace CPC2020_2_Lab4.Repositories.Interfaces
         /// Abstrakcyjna metoda do pobierania wszystkich książek z tabeli Books
         /// </summary>
         /// <returns></returns>
-        List<Book> GetBooks();
+        List<BookViewModel> GetBooks();
+
+        /// <summary>
+        /// Abstrakcyjna metoda do pobierania widoku książek z tabeli Books
+        /// </summary>
+        /// <returns></returns>
+        List<BookSimpleViewModel> GetBooksSimpleViewModel();
 
         /// <summary>
         /// Abstrakcyjna metoda do pobierania książki o podanym id

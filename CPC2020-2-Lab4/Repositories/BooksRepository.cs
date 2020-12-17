@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CPC2020_2_Lab4.Models.Entities;
 using CPC2020_2_Lab4.Repositories.Interfaces;
+using CPC2020_2_Lab4.ViewModels;
 
 namespace CPC2020_2_Lab4.Repositories{
 
@@ -14,10 +15,22 @@ namespace CPC2020_2_Lab4.Repositories{
         /// Metoda pobierania książek z bazy danych
         /// </summary>
         /// <returns></returns>
-        public List<Book> GetBooks()
+        public List<BookViewModel> GetBooks()
         {
-            throw new NotImplementedException();
+            List<Book> books = DbContext.Books.ToList();
+            return Mapper.Map<List<Book>, List<BookViewModel>>(books);
         }
+
+        /// <summary>
+        /// Metoda pobierania książek z bazy danych w uproszczonym view modelu
+        /// </summary>
+        /// <returns></returns>
+        public List<BookSimpleViewModel> GetBooksSimpleViewModel()
+        {
+            List<Book> books = DbContext.Books.ToList();
+            return Mapper.Map<List<Book>, List<BookSimpleViewModel>>(books);
+        }
+
 
         /// <summary>
         /// Metoda pobierania książek z bazy danych
@@ -26,7 +39,7 @@ namespace CPC2020_2_Lab4.Repositories{
         /// <returns></returns>
         public Book GetBookById(int id)
         {
-            throw new NotImplementedException();
+            return DbContext.Books.SingleOrDefault(b => b.Id == id);
         }
 
         /// <summary>
@@ -41,7 +54,23 @@ namespace CPC2020_2_Lab4.Repositories{
         /// <returns></returns>
         public bool AddBook(string title, int yearOfPublish, float price, string genre, string authorFirstName, string authorLastName)
         {
-            throw new NotImplementedException();
+            Genre genreOfBook = DbContext.Genres.SingleOrDefault(g => g.Name == genre);
+            Author authorOfBook =
+                DbContext.Authors.SingleOrDefault(a => a.FirstName == authorFirstName && a.LastName == authorLastName);
+            if (genreOfBook == null || authorOfBook == null)
+                return false;
+            Book bookToAdd = new Book()
+            {
+                Title = title,
+                YearOfPublish = yearOfPublish,
+                Price = price,
+                Author = authorOfBook,
+                GenreId = genreOfBook.Id
+            };
+
+            DbContext.Books.Add(bookToAdd);
+
+            return DbContext.SaveChanges() > 0;
         }
 
         /// <summary>
@@ -51,7 +80,9 @@ namespace CPC2020_2_Lab4.Repositories{
         /// <returns></returns>
         public bool DeleteBook(int bookId)
         {
-            throw new NotImplementedException();
+            Book book = DbContext.Books.SingleOrDefault(b => b.Id == bookId);
+            DbContext.Books.Remove(book);
+            return DbContext.SaveChanges() > 0;
         }
 
         /// <summary>
@@ -67,7 +98,27 @@ namespace CPC2020_2_Lab4.Repositories{
         /// <returns></returns>
         public bool EditBook(int bookId, string title, int yearOfPublish, float price, string genre, string authorFirstName, string authorLastName)
         {
-            throw new NotImplementedException();
+            //znajdujemy obiekt do edycji
+            Book book = DbContext.Books.SingleOrDefault(b => b.Id == bookId);
+            if (book == null)
+                return false;
+
+            //znajdujemy gatunek i autora
+            Genre genreOfBook = DbContext.Genres.SingleOrDefault(g => g.Name == genre);
+            Author authorOfBook =
+                DbContext.Authors.SingleOrDefault(a => a.FirstName == authorFirstName && a.LastName == authorLastName);
+            if (genreOfBook == null || authorOfBook == null)
+                return false;
+
+            //zmieniamy właściwości
+            book.Title = title;
+            book.YearOfPublish = yearOfPublish;
+            book.Price = price;
+            book.Genre = genreOfBook;
+            book.Author = authorOfBook;
+
+            //zapisujemy zmiane
+            return DbContext.SaveChanges() > 0;
         }
     }
 }
